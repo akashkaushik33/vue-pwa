@@ -6,7 +6,7 @@ import auth0 from 'auth0-js'
 var webAuth = new auth0.WebAuth({
   domain: 'vue-passwordless.auth0.com',
   clientID: 'lD9QqKf143sWzfdQSp83_oCedlO0cZfs',
-  redirectUri: 'https://f896668e.ngrok.io',
+  redirectUri: 'https://vue-pwa33.herokuapp.com',
   responseType: 'token id_token'
 })
 // webAuth.crossOriginVerification()
