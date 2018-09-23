@@ -1,28 +1,46 @@
 <template>
   <v-app class="background">
     <v-content>
+      <v-snackbar v-model="snackbar" :timeout="2000" :top="true">
+        {{ errorMessage }}
+        <v-btn color="primary" flat @click="snackbar = false">Close</v-btn>
+      </v-snackbar>
       <router-view/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-
+import { parseHash, isAuthenticated } from '@/services/auth'
 export default {
   name: 'App',
   data () {
     return {
-      clipped: false,
-      drawer: true,
-      fixed: false,
-      items: [{
-        icon: 'bubble_chart',
-        title: 'Inspire'
-      }],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      snackbar: false,
+      errorMessage: ''
+    }
+  },
+  created () {
+    if (window.location.hash.includes('access_token')) {
+      parseHash((err, user) => {
+        if (err) {
+          console.log(err)
+          this.snackbar = true
+          localStorage.removeItem('userData')
+          this.errorMessage = `${err.error} and ${err.errorDescription}` || 'Invalid data'
+          window.location = window.location.origin
+        } else {
+          localStorage.setItem('userData', JSON.stringify(user))
+          this.$router.push({ 'name': 'profile', params: { id: user.nickname || 'user', data: user } })
+        }
+      })
+    }
+    if (isAuthenticated()) {
+      console.log('authenticated')
+      let userData = JSON.parse(localStorage.getItem('userData'))
+      this.$router.push({ name: 'profile', params: { id: userData.nickname } })
+    } else {
+      this.$router.push({ 'name': 'home' })
     }
   }
 }

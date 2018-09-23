@@ -1,15 +1,28 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import success from './views/success.vue'
+import profile from './views/profile.vue'
 
 Vue.use(Router)
 
 export default new Router({
+  // mode: 'history',
   routes: [
     {
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/success',
+      name: 'success',
+      component: success
+    },
+    {
+      path: '/profile/:id',
+      name: 'profile',
+      component: profile
     },
     {
       path: '/about',
