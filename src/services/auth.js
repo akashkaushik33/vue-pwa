@@ -5,7 +5,7 @@ import auth0 from 'auth0-js'
 var webAuth = new auth0.WebAuth({
   domain: 'vue-passwordless.auth0.com',
   clientID: 'lD9QqKf143sWzfdQSp83_oCedlO0cZfs',
-  redirectUri: 'http://localhost:8080/#/',
+  redirectUri: process.env.NODE_ENV === 'production' ? 'https://vue-pwa33.herokuapp.com/#/' : 'http://localhost:8080/#/',
   responseType: 'token id_token'
 })
 
