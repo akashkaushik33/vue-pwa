@@ -2,6 +2,8 @@ import auth0 from 'auth0-js'
 // import { Auth0LockPasswordless } from 'auth0-lock'
 
 // creating auth0 new instance
+let redirectUri = process.env.NODE_ENV === 'production' ? 'https://vue-pwa33.herokuapp.com/#/' : 'http://localhost:8080/#/'
+console.log(process.env.NODE_ENV, redirectUri)
 var webAuth = new auth0.WebAuth({
   domain: 'vue-passwordless.auth0.com',
   clientID: 'lD9QqKf143sWzfdQSp83_oCedlO0cZfs',
