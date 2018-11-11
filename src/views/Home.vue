@@ -27,24 +27,31 @@
           </div>
           <!-- card for email and verification code input -->
           <v-card class="login-card">
-            <v-card-title v-if="!sent" class="headline">Sign Up or Login</v-card-title>
-            <v-card-title v-else class="headline">Enter Verification Code</v-card-title>
+            <v-card-title  class="headline">Sign Up or Login</v-card-title>
+            <!-- <v-card-title v-if="!sent" class="headline">Sign Up or Login</v-card-title> -->
+            <!-- <v-card-title v-else class="headline">Enter Verification Code</v-card-title> -->
             <v-card-text>
               <v-text-field
-                v-if="!sent"
                 ref="email"
                 label="Enter your email"
                 v-model="email"
                 :rules="emailRules"
               >
+              <!-- <v-text-field
+                v-if="!sent"
+                ref="email"
+                label="Enter your email"
+                v-model="email"
+                :rules="emailRules"
+              > -->
               </v-text-field>
-              <v-text-field
+              <!-- <v-text-field
                 v-else
                 ref="code"
                 label="Enter your code"
                 v-model="code"
               >
-              </v-text-field>
+              </v-text-field> -->
             </v-card-text>
             <v-spacer></v-spacer>
             <v-card-actions>
@@ -100,6 +107,7 @@ export default {
         return localStorage.removeItem('userData')
       }
       this.sent = true
+      this.$router.push('success')
     },
     verifyEmailCode () {
       // auth service method for verifying verification code

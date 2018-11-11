@@ -7,7 +7,7 @@
           <h3 class="display-1 font-weight-light">
             Please check your email.
           </h3>
-          <p>We have sent a verification mail to your email address.</p>
+          <p>An verification email has been to your email address.</p>
           <p>Click <router-link to="/">here</router-link> to go back to login page.</p>
         </div>
       </v-flex>

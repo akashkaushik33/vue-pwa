@@ -14,7 +14,7 @@ export const passwordlessLogin = function (userEmail, callback) {
   // lockPasswordless.show()
   webAuth.passwordlessStart({
     connection: 'email',
-    send: 'code',
+    send: 'link',
     email: userEmail
   },
   callback) // handle errors and response
